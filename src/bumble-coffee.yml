@@ -59,7 +59,7 @@ bumbleCoffee:
       - &GREEN_LIGHT     '#2a7f7f'
       - &ORANGE_LIGHT    '#f47c20'
       - &PINK_LIGHT      '#f47c20'
-      - &PURPLE_LIGHT    '#7c3626'
+      - &PURPLE_LIGHT    '#f76b00'
       - &RED_LIGHT       '#d63031'
       - &YELLOW_LIGHT    '#f47c20'
     ansi:

@@ -5,7 +5,7 @@
 [![Open VSX Version](https://img.shields.io/static/v1?label=Open%20VSX&message=Download&color=9B8AE0&style=for-the-badge&logo=open-vsx)](https://open-vsx.org/extension/enBonnet/bumble-coffee-theme)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/enbonnet.bumble-coffee-theme?color=33B074&style=for-the-badge&label=Downloads)](https://marketplace.visualstudio.com/items?itemName=enbonnet.bumble-coffee-theme)
 
-<img src="./images/icon.png" alt="Bumble Coffee Theme for Visual Studio Code" width="200">
+<img src="https://github.com/enBonnet/bumble-coffee-theme-vscode/blob/main/images/icon.png?raw=true" alt="Bumble Coffee Theme for Visual Studio Code" width="200">
 </div>
 
 ## 📋 Table of Contents
@@ -45,30 +45,30 @@ The result is a visually stunning drink with distinct "bumblebee" stripes—vibr
 
 ### Dark Theme
 <div align="center">
-<img src="./images/screenshots/dark.png" alt="Bumble Coffee Theme Dark" width="600">
+<img src="https://github.com/enBonnet/bumble-coffee-theme-vscode/blob/main/images/screenshots/dark.png?raw=true" alt="Bumble Coffee Theme Dark" width="600">
 </div>
 
 ### Light Theme
 <div align="center">
-<img src="./images/screenshots/light.png" alt="Bumble Coffee Theme Light" width="600">
+<img src="https://github.com/enBonnet/bumble-coffee-theme-vscode/blob/main/images/screenshots/light.png?raw=true" alt="Bumble Coffee Theme Light" width="600">
 </div>
 
 ## 🎨 Color Palette
 
 This theme uses a coffee-inspired color palette derived directly from the bumble coffee aesthetics:
 
-| Role | Color | Hex | Preview |
-|------|-------|-----|---------|
-| Background | Dark Espresso | `#051014` | ![#051014](https://via.placeholder.com/20/051014/051014) |
-| Foreground | Silver Fog | `#E8E8E8` | ![#E8E8E8](https://via.placeholder.com/20/E8E8E8/E8E8E8) |
-| Selection | Deep Roast | `#0D2424` | ![#0D2424](https://via.placeholder.com/20/0D2424/0D2424) |
-| Comments | Coffee Bean | `#7C3626` | ![#7C3626](https://via.placeholder.com/20/7C3626/7C3626) |
-| Cyan | Muted Teal | `#2A7F7F` | ![#2A7F7F](https://via.placeholder.com/20/2A7F7F/2A7F7F) |
-| Green | Vibrant Mint | `#3A9F7F` | ![#3A9F7F](https://via.placeholder.com/20/3A9F7F/3A9F7F) |
-| Orange | Fresh Citrus | `#F47C20` | ![#F47C20](https://via.placeholder.com/20/F47C20/F47C20) |
-| Red | Soft Cherry | `#E05545` | ![#E05545](https://via.placeholder.com/20/E05545/E05545) |
-| Purple | Roasted Cocoa | `#A85A3A` | ![#A85A3A](https://via.placeholder.com/20/A85A3A/A85A3A) |
-| Yellow | Golden Crema | `#F4A020` | ![#F4A020](https://via.placeholder.com/20/F4A020/F4A020) |
+| Role | Color | Hex |
+|------|-------|-----|
+| Background | Dark Espresso | `#051014` |
+| Foreground | Silver Fog | `#E8E8E8` |
+| Selection | Deep Roast | `#0D2424` |
+| Comments | Coffee Bean | `#7C3626` |
+| Cyan | Muted Teal | `#2A7F7F` |
+| Green | Vibrant Mint | `#3A9F7F` |
+| Orange | Fresh Citrus | `#F47C20` |
+| Red | Soft Cherry | `#E05545` |
+| Purple | Roasted Cocoa | `#A85A3A` |
+| Yellow | Golden Crema | `#F4A020` |
 
 ### UI Variants
 
