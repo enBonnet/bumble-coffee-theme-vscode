@@ -40,7 +40,7 @@ bumbleCoffee:
     - &TEMP_QUOTES          '#ffb84a'
     - &TEMP_PROPERTY_QUOTES '#4dbfbf'
   other:
-    - &LineHighlight '#0d242475'
+    - &LineHighlight '#2a7f7f75'
     - &NonText       '#e8e8e81A'
     - &WHITE         '#ffffff'
     - &TAB_DROP_BG   '#0d242470'
@@ -83,7 +83,7 @@ bumbleCoffee:
       - &TEMP_QUOTES_LIGHT          '#2a7f7f'
       - &TEMP_PROPERTY_QUOTES_LIGHT '#2a7f7f'
     other:
-      - &LineHighlight_LIGHT '#f8f4f9'
+      - &LineHighlight_LIGHT '#2a7f7f75'
       - &NonText_LIGHT       '#b8856d66'
       - &WHITE_LIGHT         '#051014'
       - &TAB_DROP_BG_LIGHT   '#2a7f7f33'
