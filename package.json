@@ -1,0 +1,59 @@
+{
+    "name": "bumble-coffee-theme",
+    "version": "1.0.0",
+    "displayName": "Bumble Coffee",
+    "description": "A high-contrast theme inspired by the refreshing layers of espresso and orange juice.",
+    "publisher": "enbonnet",
+    "license": "MIT",
+    "scripts": {
+        "build": "node ./scripts/build.js",
+        "lint": "node ./scripts/lint.js",
+        "package": "vsce package -o ./bin/bumble-coffee.vsix",
+        "vscode:prepublish": "npm run build",
+        "vsce:publish": "vsce publish"
+    },
+    "maintainers": [
+        "Ender Bonnet <@enbonnet>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/enBonnet/bumble-coffee-theme-vscode.git"
+    },
+    "bugs": {
+        "url": "https://github.com/enBonnet/bumble-coffee-theme-vscode/issues"
+    },
+    "engines": {
+        "vscode": "^1.13.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "keywords": [
+        "bumble-coffee",
+        "coffee",
+        "dark",
+        "theme",
+        "color-theme"
+    ],
+    "icon": "images/icon.png",
+    "contributes": {
+        "themes": [
+            {
+                "label": "Bumble Coffee",
+                "uiTheme": "vs-dark",
+                "path": "./theme/bumble-coffee.json"
+            },
+            {
+                "label": "Bumble Coffee Light",
+                "uiTheme": "vs",
+                "path": "./theme/bumble-coffee-light.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "js-yaml": "^4.1.1",
+        "prettier": "^3.0.0",
+        "tinycolor2": "^1.6.0",
+        "vsce": "^2.15.0"
+    }
+}
