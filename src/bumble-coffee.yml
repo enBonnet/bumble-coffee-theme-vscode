@@ -85,7 +85,7 @@ bumbleCoffee:
     other:
       - &LineHighlight_LIGHT '#2a7f7f75'
       - &NonText_LIGHT       '#b8856d66'
-      - &WHITE_LIGHT         '#051014'
+      - &WHITE_LIGHT         '#c4c4c4'
       - &TAB_DROP_BG_LIGHT   '#2a7f7f33'
       # UI Variants for Light Theme
       - &BGDark_LIGHT        '#f0e8eb' # Sidebar, panels
@@ -232,7 +232,8 @@ colors:
   editor.selectionBackground: *SELECTION                                        # Color of the editor selection
   editor.selectionHighlightBackground: *BGLighter                               # Color for regions with the same content as the selection
   editor.inactiveSelectionBackground:                                           # Color of the selection in an inactive editor
-  editor.foldBackground: !alpha [ *BGDark, 80 ]                                 # Background color for folded ranges
+  editor.foldBackground: !alpha [ *CYAN, 30 ]                                     # Background color for folded ranges
+  editor.foldPlaceholderForeground: *COMMENT
 
   editor.wordHighlightBackground: !alpha [ *CYAN, 50 ]                          # Background color of a symbol during read-access, for example when reading a variable
   editor.wordHighlightStrongBackground: !alpha [ *GREEN, 50 ]                   # Background color of a symbol during write-access, for example when writing to a variable
