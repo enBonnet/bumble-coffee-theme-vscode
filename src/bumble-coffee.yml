@@ -89,7 +89,7 @@ bumbleCoffee:
       - &TAB_DROP_BG_LIGHT   '#2a7f7f33'
       # UI Variants for Light Theme
       - &BGDark_LIGHT        '#f0e8eb' # Sidebar, panels
-      - &BGLighter_LIGHT     '#f8f4f9' # Subtle highlights
+      - &BGLighter_LIGHT     '#b8856d50' # Subtle highlights
       - &BGLight_LIGHT       '#ffffff' # Editor background
       - &BGDarker_LIGHT      '#e8dce0' # Widgets, inputs
 
