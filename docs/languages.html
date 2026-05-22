@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Scoping Fixes | Bumble Coffee Theme</title>
+  <meta name="description" content="Explicit TextMate scoping rules for over 30 languages in the Bumble Coffee VS Code theme.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/icon.png">
+
+  <style>
+    .page-header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-pink) 40%, var(--accent-green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      color: var(--fg-muted);
+      font-weight: 300;
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      padding: 0 2rem 3rem;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 480px;
+      padding: 0.85rem 1.25rem;
+      border-radius: 10px;
+      border: 1.5px solid var(--accent-orange);
+      background: rgba(5, 16, 20, 0.8);
+      color: var(--fg);
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .search-input::placeholder {
+      color: var(--fg-muted);
+      opacity: 0.7;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 107, 74, 0.2);
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .lang-card {
+      background: rgba(10, 26, 32, 0.5);
+      border: 1px solid rgba(232, 232, 232, 0.06);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .lang-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(244, 124, 32, 0.3);
+    }
+
+    .lang-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+
+    .scope-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .scope-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      background: rgba(168, 90, 58, 0.15);
+      border: 1px solid rgba(168, 90, 58, 0.25);
+      border-radius: 5px;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-cream);
+      line-height: 1.5;
+      word-break: break-all;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--fg-muted);
+      font-weight: 300;
+      font-size: 1.05rem;
+      grid-column: 1 / -1;
+    }
+
+    .lang-count {
+      color: var(--fg-muted);
+      font-weight: 300;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 0 2rem 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-header {
+        padding: 3rem 1rem 1.5rem;
+      }
+
+      .search-container {
+        padding: 0 1rem 2rem;
+      }
+
+      .lang-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="images/icon.png" alt="Bumble Coffee logo">
+      <span>Bumble Coffee</span>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="languages.html" class="active">Language Fixes</a>
+      <a href="https://github.com/enBonnet/bumble-coffee-theme-vscode" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Language Scoping Fixes</h1>
+      <p>Every language listed below includes explicit TextMate scope rules in the theme source, ensuring consistent syntax highlighting beyond generic token matching.</p>
+    </div>
+
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Filter languages…" id="searchInput" autocomplete="off">
+    </div>
+
+    <div class="lang-count" id="langCount"></div>
+
+    <div class="lang-grid" id="langGrid">
+      <div class="empty-state" id="emptyState">
+        No languages match your search.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Crafted with &#9749; by <a href="https://enbonnet.com">Ender Bonnet</a>. Licensed under <a href="https://github.com/enBonnet/bumble-coffee-theme-vscode/blob/main/LICENSE">MIT</a>.</p>
+  </footer>
+
+  <script>
+    const languages = [
+      {
+        name: "C",
+        scopes: ["storage.type.c"]
+      },
+      {
+        name: "C#",
+        scopes: [
+          "punctuation.definition.tag.cs",
+          "keyword.type.cs",
+          "storage.type.cs"
+        ]
+      },
+      {
+        name: "CoffeeScript",
+        scopes: [
+          "punctuation.section.embedded.coffee",
+          "meta.variable.assignment.destructured.object.coffee variable",
+          "meta.variable.assignment.destructured.object.coffee variable variable"
+        ]
+      },
+      {
+        name: "CSS",
+        scopes: ["punctuation.separator.list.comma.css"]
+      },
+      {
+        name: "Go",
+        scopes: ["source.go storage.type"]
+      },
+      {
+        name: "GraphQL",
+        scopes: [
+          "meta.selectionset.graphql meta.arguments.graphql variable.arguments.graphql",
+          "punctuation.colon.graphql",
+          "meta.selectionset.graphql variable",
+          "meta.selectionset.graphql meta.arguments variable",
+          "entity.name.fragment.graphql",
+          "variable.fragment.graphql"
+        ]
+      },
+      {
+        name: "Groovy",
+        scopes: [
+          "meta.method.groovy",
+          "source.groovy storage.type.def",
+          "source.groovy storage.type",
+          "storage.type.groovy",
+          "keyword.operator.navigation.groovy",
+          "storage.modifier.import"
+        ]
+      },
+      {
+        name: "Haskell",
+        scopes: [
+          "storage.type.haskell",
+          "constant.language.empty-list.haskell",
+          "meta.preprocessor.haskell"
+        ]
+      },
+      {
+        name: "Java",
+        scopes: [
+          "meta.method-call.java meta.method",
+          "source.java storage.type",
+          "storage.type.generic.java",
+          "keyword.operator.dereference.java",
+          "storage.modifier.import"
+        ]
+      },
+      {
+        name: "JavaScript",
+        scopes: [
+          "variable.other.constant.js",
+          "punctuation.section.embedded.begin.jsx",
+          "punctuation.section.embedded.end.jsx"
+        ]
+      },
+      {
+        name: "Log Files",
+        scopes: [
+          "log.error",
+          "log.warning"
+        ]
+      },
+      {
+        name: "Lua",
+        scopes: ["support.function.any-method.lua"]
+      },
+      {
+        name: "Makefile",
+        scopes: [
+          "punctuation.definition.variable.makefile",
+          "entity.name.function.target.makefile",
+          "meta.scope.prerequisites.makefile"
+        ]
+      },
+      {
+        name: "Markdown",
+        scopes: [
+          "beginning.punctuation.definition.list.markdown",
+          "beginning.punctuation.definition.quote.markdown",
+          "meta.separator.markdown",
+          "markup.fenced_code.block.markdown punctuation.definition.markdown",
+          "markup.heading.markdown punctuation.definition.string.begin",
+          "markup.heading.markdown punctuation.definition.string.end",
+          "meta.paragraph.markdown punctuation.definition.string.begin",
+          "meta.paragraph.markdown punctuation.definition.string.end",
+          "markup.quote.markdown meta.paragraph.markdown punctuation.definition.string.begin",
+          "markup.quote.markdown meta.paragraph.markdown punctuation.definition.string.end"
+        ]
+      },
+      {
+        name: "OCaml",
+        scopes: ["storage.type.ocaml"]
+      },
+      {
+        name: "Objective-C",
+        scopes: [
+          "meta.implementation storage.type.objc",
+          "meta.interface-or-protocol storage.type.objc",
+          "meta.protocol-list.objc",
+          "meta.return-type.objc",
+          "storage.type.objc"
+        ]
+      },
+      {
+        name: "Perl",
+        scopes: ["constant.other.key.perl"]
+      },
+      {
+        name: "PHP",
+        scopes: [
+          "variable.language punctuation.definition.variable.php",
+          "meta.function-call.php",
+          "meta.function.arguments variable.other.php",
+          "punctuation.terminator.expression.php",
+          "punctuation.section.embedded.end source.php",
+          "storage.type.php"
+        ]
+      },
+      {
+        name: "PowerShell",
+        scopes: [
+          "keyword.operator.other.powershell",
+          "keyword.other.statement-separator.powershell",
+          "source.powershell entity.other.attribute-name",
+          "support.constant"
+        ]
+      },
+      {
+        name: "Python",
+        scopes: [
+          "string.quoted.docstring.multi.python punctuation.definition.string.begin",
+          "string.quoted.docstring.multi.python punctuation.definition.string.end",
+          "string.quoted.docstring.multi.python constant.character.escape"
+        ]
+      },
+      {
+        name: "Ruby",
+        scopes: [
+          "variable.other.readwrite.instance.ruby",
+          "constant.other.symbol.hashkey punctuation.definition.constant.ruby",
+          "punctuation.section.embedded.end source.ruby",
+          "constant.other.symbol.hashkey.ruby"
+        ]
+      },
+      {
+        name: "Rust",
+        scopes: [
+          "storage.class.std.rust",
+          "storage.type.core.rust"
+        ]
+      },
+      {
+        name: "SCSS",
+        scopes: [
+          "meta.attribute-selector.scss",
+          "punctuation.definition.attribute-selector.end.bracket.square.scss",
+          "punctuation.definition.attribute-selector.begin.bracket.square.scss"
+        ]
+      },
+      {
+        name: "Shell (Bash)",
+        scopes: [
+          "meta.scope.for-loop.shell punctuation.definition.string.begin",
+          "meta.scope.for-loop.shell punctuation.definition.string.end",
+          "meta.scope.for-loop.shell string",
+          "source.shell variable.other"
+        ]
+      },
+      {
+        name: "Swift",
+        scopes: [
+          "keyword.expressions-and-types.swift",
+          "punctuation.function.swift",
+          "keyword.primitive-datatypes.swift",
+          "storage.type.attribute.swift"
+        ]
+      },
+      {
+        name: "TOML",
+        scopes: [
+          "meta.group.double.toml",
+          "meta.group.toml",
+          "entity.name.section.toml",
+          "variable.other.key.toml"
+        ]
+      },
+      {
+        name: "TypeScript",
+        scopes: ["variable.other.constant.ts"]
+      },
+      {
+        name: "TypeScript (TSX)",
+        scopes: [
+          "variable.other.constant.tsx",
+          "punctuation.section.embedded.begin.tsx",
+          "punctuation.section.embedded.end.tsx"
+        ]
+      },
+      {
+        name: "YAML",
+        scopes: [
+          "punctuation.definition.block.scalar.folded.yaml",
+          "punctuation.definition.block.scalar.literal.yaml",
+          "punctuation.definition.block.sequence.item.yaml",
+          "punctuation.separator.key-value.mapping.yaml",
+          "support.other.chomping-indicator.yaml",
+          "entity.name.tag.yaml",
+          "variable.other.alias.yaml"
+        ]
+      },
+      {
+        name: "reStructuredText",
+        scopes: [
+          "punctuation.definition.link.restructuredtext",
+          "markup.raw.restructuredtext",
+          "meta.link.reference.def.restructuredtext",
+          "punctuation.definition.directive.restructuredtext",
+          "entity.name.directive.restructuredtext",
+          "markup.raw.inner.restructuredtext",
+          "punctuation.definition.constant.restructuredtext"
+        ]
+      }
+    ];
+
+    const grid = document.getElementById('langGrid');
+    const emptyState = document.getElementById('emptyState');
+    const searchInput = document.getElementById('searchInput');
+    const langCount = document.getElementById('langCount');
+
+    function updateCount(filteredCount) {
+      langCount.textContent = filteredCount + ' language' + (filteredCount !== 1 ? 's' : '') + ' shown';
+    }
+
+    function renderCards(filterText) {
+      const filter = filterText.toLowerCase().trim();
+      grid.innerHTML = '';
+
+      const filtered = filter
+        ? languages.filter(function (l) { return l.name.toLowerCase().includes(filter); })
+        : languages;
+
+      updateCount(filtered.length);
+
+      if (filtered.length === 0) {
+        emptyState.style.display = 'block';
+        grid.appendChild(emptyState);
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      filtered.forEach(function (lang, idx) {
+        var card = document.createElement('div');
+        card.className = 'lang-card';
+        card.style.animationDelay = (idx * 0.03) + 's';
+
+        var nameEl = document.createElement('div');
+        nameEl.className = 'lang-name';
+        nameEl.textContent = lang.name;
+        card.appendChild(nameEl);
+
+        var badgesContainer = document.createElement('div');
+        badgesContainer.className = 'scope-badges';
+
+        lang.scopes.forEach(function (scope) {
+          var badge = document.createElement('span');
+          badge.className = 'scope-badge';
+          badge.textContent = scope;
+          badgesContainer.appendChild(badge);
+        });
+
+        card.appendChild(badgesContainer);
+        grid.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener('input', function () {
+      renderCards(this.value);
+    });
+
+    renderCards('');
+  </script>
+</body>
+</html>
